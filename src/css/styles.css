@@ -1,0 +1,33 @@
+.logo {
+    width: 110px;
+    height: 110px;
+}
+
+.imagen-Banner {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.item.social {
+    text-align: center;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 24px;
+    font-size: 13px;
+    margin-bottom: 0
+}
+
+.img-card {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.img-detail {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}

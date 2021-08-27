@@ -1,0 +1,66 @@
+{
+    "category": [
+        {
+            "id": 1,
+            "name": "Tenis",
+            "image": "https://i.ibb.co/F37LZH4/pexels-photo-4498553.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Casuales",
+            "image": "https://i.ibb.co/FggxHbm/pexels-elias-de-carvalho-1144834-1.jpg"
+        }
+    ],
+    "Tenis": [
+        {
+            "id": "Tenis-1",
+            "name": "Tenis Rosa",
+            "image": "https://i.ibb.co/PW5xGMR/sneakers-4543774-1920.jpg",
+            "price":"100000"
+        },
+        {
+            "id": "Tenis-2",
+            "name": "Tenis blancos",
+            "image": "https://i.ibb.co/Bf83kJT/shoes-1622226-1920.jpg",
+            "price":"120000"
+        },
+        {
+            "id": "Tenis-3",
+            "name": "Tenis Moca",
+            "image": "https://i.ibb.co/j3FDKYG/feet-4756507-1920.jpg",
+            "price":"75000"
+        },
+        {
+            "id": "Tenis-4",
+            "name": "Converse Rojas",
+            "image": "https://i.ibb.co/CmzRB65/feet-1567104-1920.jpg",
+            "price":"900000"
+        }
+    ],
+    "Casuales": [
+        {
+            "id": "Casuales-1",
+            "name": "Botines Negros",
+            "image": "https://i.ibb.co/jZ0YLWL/Footwear-demonstration.jpg",
+            "price":"150000"
+        },
+        {
+            "id": "Casuales-2",
+            "name": "Zapatillas con tacon",
+            "image": "https://i.ibb.co/B40qNGn/heelsworkplace.jpg",
+            "price":"120000"
+        },
+        {
+            "id": "Casuales-3",
+            "name": "Zandalias color negro",
+            "image": "https://i.ibb.co/tMrVnWR/Shoes.jpg",
+            "price":"100000"
+        },
+        {
+            "id": "Casuales-4",
+            "name": "Botines",
+            "image": "https://i.ibb.co/n7TLPW9/pexels-tatiana-syrikova-3932882-2.jpg",
+            "price":"160000"
+        }
+    ]
+}
