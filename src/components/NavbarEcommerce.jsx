@@ -3,8 +3,15 @@ import { Navbar, Container, Nav, Image, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { startLogout } from '../actions/auth'
+import { useDispatch } from 'react-redux'
 
 export const NavbarEcommerce = () => {
+
+    const dispatch = useDispatch()
+    const handleLogout = () => {
+        dispatch(startLogout());
+    }
     return (
         <>
             <Navbar expand="lg" className="p-0">
@@ -17,6 +24,8 @@ export const NavbarEcommerce = () => {
                         <Nav className="me-auto">
                             <Link className="nav-link fs-5 text " to="/">Inicio</Link>
                             <Link className="nav-link fs-5 text" to={{ pathname: `/Product`, state: { ele: "tenis" } }}>Productos</Link>
+                            <button
+                                onClick={handleLogout}>Cerrar Sesión</button>
                         </Nav>
                         <Nav>
                             <Button type="button" className="btn btn-dark">

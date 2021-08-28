@@ -1,29 +1,71 @@
-
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { firebase } from '../firebase/firebase-config'
+import { useDispatch } from 'react-redux';
 import {
-    BrowserRouter,
+    HashRouter as Router,
     Switch,
-    Route,
-} from "react-router-dom";
-import { NavbarEcommerce } from '../components/NavbarEcommerce';
-import { Footer } from '../components/Footer'
-import { AppEcommerce } from '../container/AppEcommerce';
-import { Product } from '../container/Product';
-import { DetailProduct } from '../components/DetailProduct';
-import { Cart } from '../container/Cart'
+    Redirect
+} from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+
+import { Spinner } from "react-bootstrap";
+import { AuthRoute } from './AuthRoute'
+import { PrivateRoute } from './PrivateRoute'
+import { PublicRoute } from './PublicRoute'
+import { login } from '../actions/auth'
+import { AuthPrivateRouter } from './AuthPrivateRouter'
 
 const AppRouter = () => {
+    const [checking, setChecking] = useState(true)
+    const [isLooggedIn, setsIsLoogedIn] = useState(false)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(async (user) => {
+            if (user?.uid) {
+                dispatch(login(user.uid, user.displayName))
+                setsIsLoogedIn(true)
+
+            } else {
+                setsIsLoogedIn(false)
+            }
+            setChecking(false)
+        })
+    }, [dispatch, setChecking])
+
+    if (checking) {
+        return (
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden"> Cargando...</span>
+            </Spinner>
+        )
+    }
+
+
     return (
-        <BrowserRouter>
-            <NavbarEcommerce />
+        <Router>
             <Switch>
-                <Route exact path="/" component={AppEcommerce} />
-                <Route exact path="/Product" component={Product} />
-                <Route exact path="/Cart" component={Cart} />
-                <Route exact path="/:name" component={DetailProduct} />
+                <PublicRoute
+                    path="/auth"
+                    component={AuthRoute}
+                    isAuthenticated={isLooggedIn}
+                />
+
+                <PrivateRoute
+                    exact
+                    path="/"
+                    component={AuthPrivateRouter}
+                    isAuthenticated={isLooggedIn}
+                />
+
+                <Redirect to="/auth/Login" />
+
+
             </Switch>
-            <Footer />
-        </BrowserRouter>
+        </Router>
     )
 }
 
