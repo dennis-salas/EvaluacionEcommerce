@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { startLogout } from '../actions/auth'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export const NavbarEcommerce = () => {
-
+    const { cartShopping } = useSelector(state => state.cartShopping)
     const dispatch = useDispatch()
     const handleLogout = () => {
         dispatch(startLogout());
@@ -24,14 +24,17 @@ export const NavbarEcommerce = () => {
                         <Nav className="me-auto">
                             <Link className="nav-link fs-5 text " to="/">Inicio</Link>
                             <Link className="nav-link fs-5 text" to={{ pathname: `/Product`, state: { ele: "tenis" } }}>Productos</Link>
-                            <button
-                                onClick={handleLogout}>Cerrar Sesión</button>
+                            <h1
+                                className="nav-link fs-5 text"
+                                onClick={handleLogout}>
+                                Cerrar Sesión
+                            </h1>
                         </Nav>
                         <Nav>
                             <Button type="button" className="btn btn-dark">
                                 <Link className="nav-link text-white" to="/Cart">
                                     <FontAwesomeIcon icon={faShoppingCart} />
-                                    <span className="badge bg-danger"></span>
+                                    <span className="badge bg-danger mx-2">{cartShopping.length}</span>
                                 </Link>
                             </Button>
                         </Nav>

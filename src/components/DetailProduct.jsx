@@ -1,21 +1,25 @@
 import React from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap'
 import { useForm } from '../hook/useForm'
+import { useDispatch } from 'react-redux'
+import { addCartShopping } from '../actions/CartAction';
 
 export const DetailProduct = (props) => {
 
     const { ele } = props.location.state;
+    const dispatch = useDispatch()
 
     //const [cartShopping, setCartShopping] = useState([])
 
     const [formValues, handleInputChange] = useForm({
-        cantidad: ''
+        cantidad: "1"
     });
 
     const { cantidad } = formValues;
 
-    const addProduct = (ele) => {
-        console.log(ele)
+    const addProduct = (product, cantidad) => {
+        console.log(product, cantidad);
+        dispatch(addCartShopping(product, cantidad))
     };
 
     return (
@@ -34,7 +38,7 @@ export const DetailProduct = (props) => {
                                     type="number"
                                     name="cantidad"
                                     value={cantidad}
-                                    placeholder="0"
+                                    placeholder="1"
                                     onChange={handleInputChange}
                                     required
                                     style={{ width: "50px" }}
@@ -42,7 +46,7 @@ export const DetailProduct = (props) => {
                                 <Button
                                     type="button"
                                     className="btn mx-2"
-                                    onClick={() => addProduct(ele)}
+                                    onClick={() => addProduct(ele, cantidad)}
                                 >
                                     Comprar
                                 </Button>
